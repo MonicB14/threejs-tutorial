@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html>
     <body>
@@ -17,8 +19,8 @@
 
                 scene.add(camera);
 
-                geometry = new THREE.BoxGeometry(15,15,12);
-                material = new THREE.MeshBasicMaterial({color : 0xFF4000});
+                geometry = new THREE.BoxGeometry(15,15,15,2,2,2);
+                material = new THREE.MeshBasicMaterial({color : 0xFF4000, wireframe: true});
                 mesh = new THREE.Mesh(geometry, material);
                 mesh.name = "cube";
                 mesh.position.set(0,0,0);
