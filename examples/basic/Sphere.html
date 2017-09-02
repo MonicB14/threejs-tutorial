@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <script src="../../lib/three.js"></script>
+
+        <script>
+            var camera, scene, 
+            renderer;
+            var geometry, material, mesh;
+
+            function init(){
+                camera = new THREE.PerspectiveCamera( 55, window.innerWidth / window.innerHeight, 1, 1000 );
+				camera.position.set(0,0,80);
+
+				scene = new THREE.Scene();
+				scene.background = new THREE.Color( 0x81BEF7  );
+
+                scene.add(camera);
+
+                geometry = new THREE.SphereGeometry(10,15,15);
+                material = new THREE.MeshBasicMaterial({color : 0xFA5858});
+                mesh = new THREE.Mesh(geometry, material);
+                mesh.name = "sphere";
+                mesh.position.set(0,0,0);
+
+                scene.add(mesh);
+
+                renderer = new THREE.WebGLRenderer( { antialias: true } );
+				renderer.setSize( window.innerWidth, window.innerHeight );
+				document.body.appendChild( renderer.domElement );
+
+
+                animate();
+            }
+
+            function animate(){
+                renderer.render(scene, camera);
+                requestAnimationFrame(animate);
+            }
+
+            window.onload = init();
+
+        </script>
+    </body>
+</html>
