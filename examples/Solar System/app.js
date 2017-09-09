@@ -24,7 +24,8 @@ var solarSystem  = (function (){
   var camera,
       scene = new THREE.Scene(),
       renderer = new THREE.WebGLRenderer({ antialias: true }),
-      clock = new THREE.Clock(),
+      clock = new THREE.Clock,
+	  controls,
       deltaTime,
       sun,
       moon,
@@ -52,6 +53,10 @@ var solarSystem  = (function (){
     particleSystem = createSpaceSystem();
     scene.add(particleSystem);
     */
+	
+	//TrackBall
+	controls = new THREE.TrackballControls(camera);
+    controls.addEventListener('change', render);
 
     //Creating Sun
     var sungeometry = new THREE.SphereGeometry(7,60,60);
@@ -87,8 +92,8 @@ var solarSystem  = (function (){
     	var star = new THREE.Vector3();
     	star.x = THREE.Math.randFloatSpread( 2000 );
     	star.y = THREE.Math.randFloatSpread( 2000 );
-    	//star.z = THREE.Math.randFloatSpread( 2000 );
-      star.z = -200;
+    	star.z = THREE.Math.randFloatSpread( 2000 );
+      //star.z = -200;
     	starsGeometry.vertices.push( star )
     }
     var starsMaterial = new THREE.PointsMaterial({color:0x888888 } )
@@ -115,9 +120,14 @@ var solarSystem  = (function (){
     document.getElementById("system-container").appendChild(stats.domElement);
 
 
+	render();
     animate();
   }
 
+    function render(){
+        renderer.render(scene, camera);
+    }
+  
   //Function to provide App statistics.
   function setStats(){
     stats.setMode(0);
@@ -177,6 +187,7 @@ var solarSystem  = (function (){
     requestAnimationFrame( animate );
 
     stats.update();
+	controls.update();
   }
 
   //Function to make the specified object revolve around the Y axis.
