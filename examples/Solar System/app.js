@@ -93,7 +93,7 @@ var solarSystem  = (function (){
     	star.x = THREE.Math.randFloatSpread( 2000 );
     	star.y = THREE.Math.randFloatSpread( 2000 );
     	star.z = THREE.Math.randFloatSpread( 2000 );
-      //star.z = -200;
+        //star.z = -200;
     	starsGeometry.vertices.push( star )
     }
     var starsMaterial = new THREE.PointsMaterial({color:0x888888 } )
